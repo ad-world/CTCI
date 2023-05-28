@@ -1,26 +1,8 @@
+import java.util.HashMap;
 import java.util.Hashtable;
 
 public class Arrays {
-    public static void main(String[] args) {
-        TestSuite suite = new TestSuite();
-        // 1. isUnique
-        suite.test(isUnique("aryaman"), false);
-        suite.test(isUnique("abcde"), true);
-        suite.test(isUnique(""), true);
-
-
-        // 2. checkPermutation
-        suite.test(checkPermutation("1234", "2431"), true);
-        suite.test(checkPermutation("Aryaman", "Pooja"), false);
-        suite.test(checkPermutation("", " "), false);
-
-        // 3. URLify
-        suite.test(URLify("This is a test      ".toCharArray(), 14), "This%20is%20a%20test");
-        suite.test(URLify("Lots   of   spaces            ".toCharArray(),  18), "Lots%20%20%20of%20%20%20spaces");
-
-    }
-
-    public static boolean isUnique(String s) {
+    public boolean isUnique(String s) {
         Hashtable<Character, Integer> hashtable = new Hashtable<>();
         for(int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
@@ -35,7 +17,7 @@ public class Arrays {
         return true;
     }
 
-    public static boolean checkPermutation(String s1, String s2) {
+    public boolean checkPermutation(String s1, String s2) {
         if(s1.length() != s2.length()) {
             return false;
         }
@@ -51,7 +33,7 @@ public class Arrays {
         return news1.equals(news2);
     }
 
-    public static String URLify(char[] string, int trueLength) {
+    public String URLify(char[] string, int trueLength) {
         int spaces = 0;
         for(int i = 0; i < trueLength; i++) {
             if(string[i] == ' ') spaces++;
@@ -75,4 +57,39 @@ public class Arrays {
         return String.valueOf(string);
     }
 
+    public boolean palindromePermutation(String s) {
+        HashMap<Character, Integer> hashMap = new HashMap<>();
+        s = s.toLowerCase();
+        int charCount = 0;
+        for(int i = 0; i < s.length(); i++) {
+            if(s.charAt(i) != ' ') {
+                charCount++;
+                if(hashMap.containsKey(s.charAt(i))) {
+                    hashMap.put(s.charAt(i), hashMap.get(s.charAt(i)) + 1);
+                } else {
+                    hashMap.put(s.charAt(i), 1);
+                }
+            }
+        }
+
+
+
+        if(charCount % 2 == 0) {
+            for(Integer value : hashMap.values()) {
+                if(value % 2 != 0) {
+                    return false;
+                }
+            }
+            return true;
+        } else {
+            int countOdd = 0;
+            for(Integer value : hashMap.values()) {
+                if(value % 2 == 1) {
+                    countOdd++;
+                }
+            }
+
+            return countOdd == 1;
+        }
+    }
 }
