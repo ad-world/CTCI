@@ -92,4 +92,31 @@ public class Arrays {
             return countOdd == 1;
         }
     }
+
+    public boolean editDistance(String first, String second) {
+        if(Math.abs(first.length() - second.length()) > 1) return false;
+
+        String shorter = first.length() < second.length() ? first : second;
+        String longer = first.length() < second.length() ? second : first;
+
+        int i = 0; // index for longer string
+        int j = 0; // index for shorter string
+
+        boolean found = false;
+        while(i < longer.length() && j < shorter.length()) {
+            if(longer.charAt(i) != shorter.charAt(j)) {
+                // if we find a difference
+                if(found) return false; // difference already found, return false
+                found = true; // otherwise, set to true for next time
+
+                if(shorter.length() == longer.length()) { // this means we are on replacement
+                    j++; // add one to shorter index (since we already add one to longer one at the end)
+                }
+            } else {
+                j++; // add one to shorter index
+            }
+            i++; // always add one to longer index
+        }
+        return  true;
+    }
 }

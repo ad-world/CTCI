@@ -37,7 +37,7 @@ class ArraysTest {
     }
 
     @Test
-    public void palindomePermutationTest() {
+    public void palindromePermutationTest() {
         boolean test1 = arrayProblems.palindromePermutation("Tact Coa");
         boolean test2 = arrayProblems.palindromePermutation("aryaman");
         boolean test3 = arrayProblems.palindromePermutation("aacdrbrdcaa");
@@ -47,5 +47,16 @@ class ArraysTest {
         assertFalse(test2);
         assertTrue(test3);
         assertTrue(test4);
+    }
+
+    @Test
+    public void editDistanceTest() {
+        boolean test1 = arrayProblems.editDistance("Arya", "Aryam");
+        boolean test2 = arrayProblems.editDistance("hello", "world");
+        boolean test3 = arrayProblems.editDistance("pale", "bale");
+
+        assertTrue(test1);
+        assertFalse(test2);
+        assertTrue(test3);
     }
 }
