@@ -59,4 +59,15 @@ class ArraysTest {
         assertFalse(test2);
         assertTrue(test3);
     }
+
+    @Test
+    public void stringCompressionTest() {
+        String test1 = arrayProblems.stringCompression("aabcccccaaa");
+        String test2 = arrayProblems.stringCompression("aryaman");
+        String test3 = arrayProblems.stringCompression("aaaahhhhhhhwweer");
+
+        assertEquals("a2b1c5a3", test1);
+        assertEquals("aryaman", test2);
+        assertEquals("a4h7w2e2r1", test3);
+    }
 }

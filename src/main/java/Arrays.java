@@ -119,4 +119,35 @@ public class Arrays {
         }
         return  true;
     }
+
+    public String stringCompression(String s) {
+        int i = 0, j = 0;
+        char current = s.charAt(0);
+
+        StringBuilder builder = new StringBuilder();
+
+        while(j != s.length()) {
+            if(s.charAt(j) == current) {
+                if(j == s.length() - 1) {
+                    int length = j - i + 1;
+                    builder.append(current + String.valueOf(length));
+                }
+                j++;
+            } else {
+                int length = j - i;
+                builder.append(current + String.valueOf(length));
+                i = j;
+                current = s.charAt(j);
+            }
+        }
+
+        String result = builder.toString();
+
+        if (result.length() >= s.length()) {
+            return s;
+        } else {
+            return result;
+        }
+    }
+
 }
