@@ -1,4 +1,7 @@
 import org.junit.jupiter.api.Test;
+
+import java.sql.Array;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArraysTest {
@@ -69,5 +72,28 @@ class ArraysTest {
         assertEquals("a2b1c5a3", test1);
         assertEquals("aryaman", test2);
         assertEquals("a4h7w2e2r1", test3);
+    }
+
+    @Test
+    public void rotateMatrixTest() {
+        int[][] arr1 = {{0,0}, {1,2}};
+        int[][] arr2 = {{1, 2, 3, 4, 5}};
+
+        boolean test1 = arrayProblems.rotate(arr1);
+        boolean test2 = arrayProblems.rotate(arr2);
+
+        assertTrue(test1);
+        assertFalse(test2);
+    }
+
+    @Test
+    public void zeroMatrixTest() {
+        int[][] arr1 = {{1, 1}, {2, 2}, {3, 3}};
+        int[][] arr2 = {{0, 3}, {2, 3}, {3, 4}};
+        int[][] res1 = arrayProblems.zeroMatrix(arr1);
+        int[][] res2 = arrayProblems.zeroMatrix(arr2);
+
+        assertArrayEquals(new int[][] {{1, 1}, {2, 2}, {3, 3}}, res1);
+        assertArrayEquals(new int[][] {{0, 0}, {0, 3}, {0, 4}}, res2);
     }
 }

@@ -1,5 +1,7 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.List;
 
 public class Arrays {
     public boolean isUnique(String s) {
@@ -130,12 +132,12 @@ public class Arrays {
             if(s.charAt(j) == current) {
                 if(j == s.length() - 1) {
                     int length = j - i + 1;
-                    builder.append(current + String.valueOf(length));
+                    builder.append(current).append(length);
                 }
                 j++;
             } else {
                 int length = j - i;
-                builder.append(current + String.valueOf(length));
+                builder.append(current).append(length);
                 i = j;
                 current = s.charAt(j);
             }
@@ -150,4 +152,50 @@ public class Arrays {
         }
     }
 
+    public boolean rotate(int[][] matrix) {
+        if(matrix.length == 0 || matrix.length != matrix[0].length) return false;
+
+        int n = matrix.length;
+
+        for(int layer = 0; layer < n / 2; layer++) {
+            int last = n - 1 - layer;
+            for (int i = layer; i < last; i++) {
+                int offset = i - layer;
+
+                int top = matrix[layer][i];
+
+                matrix[layer][i] = matrix[last-offset][layer];
+                matrix[last-offset][layer] = matrix[last][last-offset];
+                matrix[last][last-offset] = matrix[i][last];
+                matrix[i][last] = top;
+            }
+        }
+        return true;
+    }
+
+    public int[][] zeroMatrix(int[][] matrix) {
+        if(matrix.length == 0 || matrix[0].length == 0) return matrix;
+        int n = matrix.length;
+        int m = matrix[0].length;
+
+        ArrayList<Integer> emptyX = new ArrayList<Integer>();
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                if(matrix[i][j] == 0) {
+                    emptyX.add(i);
+                }
+            }
+        }
+
+        for(int x: emptyX) {
+            for(int j = 0; j < m; j++) {
+                matrix[x][j] = 0;
+            }
+            for(int i = 0; i < n; i++) {
+                matrix[i][x] = 0;
+            }
+        }
+
+        return matrix;
+    }
 }
