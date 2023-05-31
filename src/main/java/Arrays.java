@@ -4,6 +4,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 public class Arrays {
+    // 1.1 Is Unique
     public boolean isUnique(String s) {
         Hashtable<Character, Integer> hashtable = new Hashtable<>();
         for(int i = 0; i < s.length(); i++) {
@@ -19,6 +20,7 @@ public class Arrays {
         return true;
     }
 
+    // 1.2 Check Permutation
     public boolean checkPermutation(String s1, String s2) {
         if(s1.length() != s2.length()) {
             return false;
@@ -35,6 +37,7 @@ public class Arrays {
         return news1.equals(news2);
     }
 
+    // 1.3 URLify
     public String URLify(char[] string, int trueLength) {
         int spaces = 0;
         for(int i = 0; i < trueLength; i++) {
@@ -59,6 +62,7 @@ public class Arrays {
         return String.valueOf(string);
     }
 
+    // 1.4 Palindrome Permutation
     public boolean palindromePermutation(String s) {
         HashMap<Character, Integer> hashMap = new HashMap<>();
         s = s.toLowerCase();
@@ -95,6 +99,7 @@ public class Arrays {
         }
     }
 
+    // 1.5 Edit Distance
     public boolean editDistance(String first, String second) {
         if(Math.abs(first.length() - second.length()) > 1) return false;
 
@@ -122,6 +127,7 @@ public class Arrays {
         return  true;
     }
 
+    // 1.6 String Compression
     public String stringCompression(String s) {
         int i = 0, j = 0;
         char current = s.charAt(0);
@@ -152,6 +158,7 @@ public class Arrays {
         }
     }
 
+    // 1.7 Rotate Matrix
     public boolean rotate(int[][] matrix) {
         if(matrix.length == 0 || matrix.length != matrix[0].length) return false;
 
@@ -173,6 +180,7 @@ public class Arrays {
         return true;
     }
 
+    // 1.8 Zero Matrix
     public int[][] zeroMatrix(int[][] matrix) {
         if(matrix.length == 0 || matrix[0].length == 0) return matrix;
         int n = matrix.length;
@@ -197,5 +205,26 @@ public class Arrays {
         }
 
         return matrix;
+    }
+
+    // 1.9 String Rotation
+    public boolean isRotation(String s1, String s2) {
+        int s1length = s1.length();
+        int s2length = s2.length();
+
+        if(s1length == s2length && s1length > 0) {
+            String doubleS1 = s1+s1;
+            return isSubstring(doubleS1, s2);
+        }
+
+        return false;
+    }
+
+    /*
+    Helper function for isRotation. Spec of question requires to implement isRotation with only one
+    call to isSubstring
+     */
+    private boolean isSubstring(String s1, String s2) {
+        return s1.contains(s2);
     }
 }

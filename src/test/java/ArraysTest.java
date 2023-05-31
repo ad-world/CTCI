@@ -96,4 +96,12 @@ class ArraysTest {
         assertArrayEquals(new int[][] {{1, 1}, {2, 2}, {3, 3}}, res1);
         assertArrayEquals(new int[][] {{0, 0}, {0, 3}, {0, 4}}, res2);
     }
+
+    @Test
+    public void isRotationTest() {
+        assertTrue(arrayProblems.isRotation("waterbottle", "erbottlewat"));
+        assertFalse(arrayProblems.isRotation("aryaman", "dhingra"));
+        assertFalse(arrayProblems.isRotation("", "123"));
+        assertTrue(arrayProblems.isRotation("rotation", "tionrota"));
+    }
 }
