@@ -16,4 +16,27 @@ public class LinkedLists {
             head = head.next;
         }
     }
+
+    public int kthToLast(Node head, int k) {
+        Node current = head;
+        int length = 0;
+
+        while(current != null) {
+            length++;
+            current = current.next;
+        }
+
+        int target = length - k;
+        int count = 0 ;
+        Node temp = head;
+        while(count != target && temp != null) {
+            temp = temp.next;
+            count++;
+        }
+
+        assert temp != null;
+        return temp.data;
+
+    }
+
 }
