@@ -1,4 +1,4 @@
-# Cracking The Coding Interview (Java)
+# Cracking The Coding Interview - My Solutions in Java
 
 ### This repository has two main purposes
 1. Learning Java.
