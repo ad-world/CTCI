@@ -36,7 +36,17 @@ public class LinkedLists {
 
         assert temp != null;
         return temp.data;
-
     }
+
+    public void deleteMiddleNode(Node node) {
+        if(node == null || node.next == null) {
+            return;
+        }
+
+        node.data = node.next.data;
+        node.next = node.next.next;
+    }
+
+
 
 }

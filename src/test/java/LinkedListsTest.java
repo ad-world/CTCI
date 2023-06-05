@@ -2,7 +2,6 @@ import org.junit.jupiter.api.Test;
 import util.Node;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -57,4 +56,27 @@ class LinkedListsTest {
         int fifthToLast = linkedListsProblems.kthToLast(list, 5);
         assertEquals(1, fifthToLast);
     }
+
+    @Test
+    public void deleteMiddleNodeTest() {
+        Node list = new Node(1);
+        list.appendToTail(1);
+        Node middleNode = new Node(3);
+        list.appendToTail(middleNode);
+        list.appendToTail(5);
+        list.appendToTail(6);
+
+        linkedListsProblems.deleteMiddleNode(middleNode);
+
+        Node head = list;
+        assertEquals(1, head.data);
+        head = head.next;
+        assertEquals(1, head.data);
+        head = head.next;
+        assertEquals(5, head.data);
+        head = head.next;
+        assertEquals(6, head.data);
+    }
+
+
 }
