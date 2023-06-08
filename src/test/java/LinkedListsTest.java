@@ -78,5 +78,63 @@ class LinkedListsTest {
         assertEquals(6, head.data);
     }
 
+    @Test
+    public void partitionTest() {
+        Node list = new Node(3);
+        list.appendToTail(5);
+        list.appendToTail(8);
+        list.appendToTail(5);
+        list.appendToTail(10);
+        list.appendToTail(2);
+        list.appendToTail(1);
+
+        linkedListsProblems.partition(list, 5);
+
+        Node firstFive = list.findFirst(5);
+
+        while(firstFive != null) {
+            assertTrue(firstFive.data >= 5);
+            firstFive = firstFive.next;
+        }
+    }
+
+    @Test
+    public void sumListsTest() {
+        Node list = new Node(7);
+        list.appendToTail(1);
+        list.appendToTail(6);
+
+        Node list2 = new Node(5);
+        list2.appendToTail(9);
+        list2.appendToTail(2);
+
+        Node sumList = linkedListsProblems.sumLists(list, list2);
+
+        assertEquals(2, sumList.data);
+        sumList = sumList.next;
+        assertEquals(1, sumList.data);
+        sumList = sumList.next;
+        assertEquals(9, sumList.data);
+
+        Node list3 = new Node(9);
+        list3.appendToTail(9);
+        list3.appendToTail(9);
+
+        Node list4 = new Node(9);
+        list4.appendToTail(9);
+        list4.appendToTail(9);
+
+        Node sumList2 = linkedListsProblems.sumLists(list3, list4);
+
+        assertEquals(8, sumList2.data);
+        sumList2 = sumList2.next;
+        assertEquals(9, sumList2.data);
+        sumList2 = sumList2.next;
+        assertEquals(9, sumList2.data);
+        sumList2 = sumList2.next;
+        assertEquals(1, sumList2.data);
+    }
+
+
 
 }

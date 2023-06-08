@@ -26,4 +26,27 @@ public class Node {
 
         n.next = d;
     }
+
+    public String getListString() {
+        Node n = this;
+        StringBuilder builder = new StringBuilder();
+
+        while(n != null) {
+            builder.append(n.data).append(' ');
+            n = n.next;
+        }
+
+        return builder.toString().trim();
+    }
+
+    public Node findFirst(int n) {
+        Node node = this;
+        while(node != null) {
+            if(node.data == n) return node;
+            node = node.next;
+        }
+
+        return null;
+    }
+
 }
