@@ -135,6 +135,60 @@ class LinkedListsTest {
         assertEquals(1, sumList2.data);
     }
 
+    @Test
+    public void isPalindromeTest() {
+        Node list1 = new Node(1);
+        list1.appendToTail(2);
+        list1.appendToTail(3);
+        list1.appendToTail(2);
+        list1.appendToTail(1);
+
+        assertTrue(linkedListsProblems.isPalindrome(list1));
+
+        list1.appendToTail(3);
+
+        assertFalse(linkedListsProblems.isPalindrome(list1));
+    }
+
+
+    @Test
+    public void intersectTest() {
+        Node intersectNode = new Node(4);
+
+        Node list1 = new Node(4);
+        list1.appendToTail(2);
+        list1.appendToTail(5);
+        list1.appendToTail(intersectNode);
+
+        Node list2 = new Node(1);
+        list2.appendToTail(intersectNode);
+        list2.appendToTail(9);
+
+        assertEquals(intersectNode, linkedListsProblems.intersect(list1, list2));
+
+        Node list3 = new Node(1);
+        list3.appendToTail(2);
+        list3.appendToTail(6);
+
+        assertNull(linkedListsProblems.intersect(list1, list3));
+    }
+
+    @Test
+    public void loopDetectionTest() {
+        Node loopNode = new Node(5);
+        Node lastNode = new Node(34);
+        lastNode.next = loopNode;
+
+        Node list = new Node(4);
+        list.appendToTail(3);
+        list.appendToTail(4);
+        list.appendToTail(loopNode);
+        list.appendToTail(7);
+        list.appendToTail(6);
+        list.appendToTail(lastNode);
+
+        assertEquals(loopNode, linkedListsProblems.loopDetection(list));
+    }
 
 
 }

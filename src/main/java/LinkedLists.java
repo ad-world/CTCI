@@ -1,6 +1,7 @@
 import util.Node;
 
 import java.util.HashMap;
+import java.util.Hashtable;
 
 public class LinkedLists {
 
@@ -129,4 +130,76 @@ public class LinkedLists {
 
         return newList.next;
     }
+
+    public boolean isPalindrome(Node head) {
+        Node reversed = reverseList(head);
+
+        while(head != null) {
+            if(head.data != reversed.data) {
+                return false;
+            }
+
+            head = head.next;
+            reversed = reversed.next;
+        }
+
+        return true;
+    }
+
+    // Helper function for isPalindrome
+    private Node reverseList(Node head) {
+
+        //         1 -> 2 -> 3 -> 4 -> 5 -> null
+        // null <- 1 <- 2 <- 3 <- 4 <- 5
+
+        Node prev = null;
+        Node curr = head;
+
+        while(curr != null) {
+            Node temp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
+        }
+
+        return prev;
+    }
+
+    public Node intersect(Node first, Node second) {
+        // Brute force method
+        while (first != null) {
+            Node temp = second;
+            while(temp != null) {
+                if(temp == first) {
+                    return temp;
+                }
+                temp = temp.next;
+            }
+            first = first.next;
+        }
+
+        return null;
+    }
+    
+    public Node loopDetection(Node head) {
+        // A -> B -> C -> D -> E -> C
+        Hashtable<Node, Integer> map = new Hashtable<>();
+        
+        boolean foundNode = false;
+        Node loopstart = null;
+        
+        while(!foundNode) {
+            if(map.containsKey(head)) {
+                foundNode = true;
+                loopstart = head;
+            } else {
+                map.put(head, 1);
+                head = head.next;
+            }
+        }
+        
+        return loopstart;
+    }
+
+
 }

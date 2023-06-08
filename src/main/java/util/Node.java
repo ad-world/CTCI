@@ -49,4 +49,15 @@ public class Node {
         return null;
     }
 
+    public int length() {
+        int length = 0;
+        Node n = this;
+        while(n != null) {
+            length++;
+            n = n.next;
+        }
+
+        return length;
+    }
+
 }
