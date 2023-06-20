@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 import util.Graph;
+import util.TreeNode;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,5 +26,23 @@ class GraphsTest {
         g1.removeEdge(6, 4, true);
 
         assertFalse(graphProblems.routeBetweenNodes(1, 4, g1));
+    }
+
+    @Test
+    public void minimalBstTest() {
+        Graphs graphProblems = new Graphs();
+        int[] array = {1, 2, 3, 4, 5, 6, 7};
+        TreeNode root = graphProblems.createMinimalBST(array);
+        assertEquals(root.value, 4);
+        assertEquals(root.left.value, 2);
+        assertEquals(root.right.value, 6);
+        assertEquals(root.left.left.value, 1);
+        assertEquals(root.left.right.value, 3);
+        assertEquals(root.right.left.value, 5);
+        assertEquals(root.right.right.value, 7);
+
+        int[] array2 = {};
+        TreeNode root2 = graphProblems.createMinimalBST(array2);
+        assertNull(root2);
     }
 }
