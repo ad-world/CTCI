@@ -2,6 +2,9 @@ import org.junit.jupiter.api.Test;
 import util.Graph;
 import util.TreeNode;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class GraphsTest {
@@ -44,5 +47,29 @@ class GraphsTest {
         int[] array2 = {};
         TreeNode root2 = graphProblems.createMinimalBST(array2);
         assertNull(root2);
+    }
+
+    @Test
+    public void listOfDepthsTest() {
+        Graphs graphProblems = new Graphs();
+        int[] array = {1, 2, 3, 4, 5, 6, 7};
+        TreeNode root = graphProblems.createMinimalBST(array);
+        List<LinkedList<Integer>> result = graphProblems.listOfDepths(root);
+
+        assertEquals(4,  result.get(0).get(0));
+        assertEquals(2, result.get(1).get(0));
+        assertEquals(6, result.get(1).get(1));
+    }
+
+    @Test
+    public void listOfDepthsBFSTest() {
+        Graphs graphProblems = new Graphs();
+        int[] array = {1, 2, 3, 4, 5, 6, 7};
+        TreeNode root = graphProblems.createMinimalBST(array);
+        List<LinkedList<TreeNode>> result = graphProblems.listOfDepthsBFS(root);
+
+        assertEquals(4,  result.get(0).get(0).value);
+        assertEquals(2, result.get(1).get(0).value);
+        assertEquals(6, result.get(1).get(1).value);
     }
 }

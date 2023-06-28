@@ -1,8 +1,10 @@
+import com.sun.source.tree.Tree;
 import util.CustomQueue;
 import util.Graph;
 import util.TreeNode;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Graphs {
     public boolean routeBetweenNodes(int v1, int v2, Graph g) {
@@ -46,4 +48,53 @@ public class Graphs {
         node.right = createMinimalBSTHelper(array, middle + 1, end);
         return node;
     }
+
+    public List<LinkedList<Integer>> listOfDepths(TreeNode root) {
+        HashMap<Integer, LinkedList<Integer>> map = new HashMap<>();
+        listOfDepthsHelper(root, map, 0);
+
+        return new ArrayList<>(map.values());
+    }
+
+    private void listOfDepthsHelper(TreeNode root, HashMap<Integer, LinkedList<Integer>> table, int level) {
+        if(root != null) {
+            if(!table.containsKey(level)) {
+               table.put(level, new LinkedList<>());
+            }
+
+            table.get(level).add(root.value);
+
+            listOfDepthsHelper(root.left, table, level + 1);
+            listOfDepthsHelper(root.right, table, level + 1);
+        }
+    }
+
+    public List<LinkedList<TreeNode>> listOfDepthsBFS(TreeNode root) {
+        ArrayList<LinkedList<TreeNode>> list = new ArrayList<>();
+        LinkedList<TreeNode> current = new LinkedList<>();
+
+        if(root != null) {
+            current.add(root);
+        }
+
+        while (current.size() > 0) {
+            list.add(current);
+            LinkedList<TreeNode> parents = current;
+            current = new LinkedList<>();
+
+            for(TreeNode parent: parents) {
+                if(parent.left != null) {
+                    current.add(parent.left);
+                }
+
+                if(parent.right != null) {
+                    current.add(parent.right);
+                }
+            }
+        }
+
+        return list;
+    }
+
+
 }
