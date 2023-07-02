@@ -72,4 +72,20 @@ class GraphsTest {
         assertEquals(2, result.get(1).get(0).value);
         assertEquals(6, result.get(1).get(1).value);
     }
+
+    @Test
+    public void isBalancedTest() {
+        Graphs graphProblems = new Graphs();
+        int[] array = {1, 2, 3, 4, 5, 6, 7};
+        TreeNode root = graphProblems.createMinimalBST(array);
+
+        assertTrue(graphProblems.isBalanced(root));
+
+        TreeNode root2 = new TreeNode(1);
+        root2.right = new TreeNode(2);
+        root2.right.right = new TreeNode(3);
+        root2.right.right.right = new TreeNode(4);
+
+        assertFalse(graphProblems.isBalanced(root2));
+    }
 }
