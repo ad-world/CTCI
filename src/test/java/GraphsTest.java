@@ -88,4 +88,13 @@ class GraphsTest {
 
         assertFalse(graphProblems.isBalanced(root2));
     }
+
+    @Test
+    public void isBSTTest() {
+        Graphs graphProblems = new Graphs();
+        int[] array = {1, 2, 3, 4, 5, 6, 7};
+        TreeNode root = graphProblems.createMinimalBST(array);
+
+        assertTrue(graphProblems.isBST(root));
+    }
 }

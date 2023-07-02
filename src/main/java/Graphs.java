@@ -123,5 +123,23 @@ public class Graphs {
         }
     }
 
+    public boolean isBST(TreeNode root) {
+        return isBST(root, null, null);
+    }
+    private boolean isBST(TreeNode root, Integer min, Integer max) {
+        if(root == null) {
+            return true;
+        }
+
+        // check if min is not null and val is smaller than min OR max is not null and val is greater than max
+        // if so, return false
+        if((min != null && root.value <= min) || (max != null && root.value > max)) {
+            return false;
+        }
+
+        // check left BST, with new max (current node value) and right BST with new min (current node value)
+        return isBST(root.left, min, root.value) && isBST(root.right, root.value, max);
+    }
+
 
 }
