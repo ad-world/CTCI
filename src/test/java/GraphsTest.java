@@ -97,4 +97,20 @@ class GraphsTest {
 
         assertTrue(graphProblems.isBST(root));
     }
+
+    @Test
+    public void successorTest() {
+        Graphs graphProblems = new Graphs();
+        int[] array = {1, 2, 3, 4, 5, 6, 7};
+        TreeNode root = graphProblems.createMinimalBST(array);
+
+        //      4
+        //   2      6
+        // 1   3  5   7
+
+        assertEquals(graphProblems.successor(root.right,root), root.right.right);
+        assertEquals(graphProblems.successor(root.right.left, root), root.right);
+        assertEquals(graphProblems.successor(root.left.left, root), root.left);
+        assertEquals(graphProblems.successor(root.left.right, root), root);
+    }
 }

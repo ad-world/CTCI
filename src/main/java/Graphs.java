@@ -141,5 +141,44 @@ public class Graphs {
         return isBST(root.left, min, root.value) && isBST(root.right, root.value, max);
     }
 
+    public TreeNode successor(TreeNode node, TreeNode root) {
+        // if node has a right child, then return left most child of right child
+        // if node does not have right child, go up while node is right child of parent
+        // once no more right child, return parent
+
+        //        10
+        //     5      15
+        //   2   8   11  19
+        //  1 4   9   12   20
+
+        // find inorder successor of 9
+        // 9 is right child of 8 -> 8 is right child of 5 -> 5 is left child of 10 (return 10)
+
+        // We do not have access to parent
+        if(node == null) {
+            return null;
+        }
+
+        if(node.right != null) {
+            TreeNode temp = node.right;
+            while(temp.left != null) {
+                temp = temp.left;
+            }
+
+            return temp;
+        } else {
+            TreeNode temp = node;
+            TreeNode parent = node.getParent(root);
+
+            while(parent != null && parent.left != temp) {
+                temp = parent;
+                parent = parent.getParent(root);
+            }
+            return parent;
+        }
+
+
+    }
+
 
 }
